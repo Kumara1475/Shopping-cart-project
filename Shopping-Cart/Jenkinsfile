@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven398'
+    }
+    
+    stages {  // Missing "stages" block in your script
+        stage('COMPILE') {
+            steps {
+                sh "mvn clean compile -DskipTests=true"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh "mvn clean package -DskipTests=true"
+            }
+        }
+    }
+}
